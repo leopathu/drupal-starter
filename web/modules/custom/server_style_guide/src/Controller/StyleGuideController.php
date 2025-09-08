@@ -26,6 +26,7 @@ use Drupal\server_general\ThemeTrait\InfoCardThemeTrait;
 use Drupal\server_general\ThemeTrait\LinkThemeTrait;
 use Drupal\server_general\ThemeTrait\NewsTeasersThemeTrait;
 use Drupal\server_general\ThemeTrait\PeopleTeasersThemeTrait;
+use Drupal\server_general\ThemeTrait\PersonCardsThemeTrait;
 use Drupal\server_general\ThemeTrait\QuickLinksThemeTrait;
 use Drupal\server_general\ThemeTrait\QuoteThemeTrait;
 use Drupal\server_general\ThemeTrait\SearchThemeTrait;
@@ -66,6 +67,7 @@ class StyleGuideController extends ControllerBase {
   use TagThemeTrait;
   use TitleAndLabelsThemeTrait;
   use WebformTrait;
+  use PersonCardsThemeTrait;
 
 
   /**
@@ -213,6 +215,9 @@ class StyleGuideController extends ControllerBase {
     $element = $this->getWebformElement();
     $build[] = $this->wrapElementNoContainer($element, 'Element: Webform');
 
+    $element = $this->getPersonCards();
+    $build[] = $this->wrapElementNoContainer($element, 'Element: Person Cards');
+
     return $build;
   }
 
@@ -289,6 +294,29 @@ class StyleGuideController extends ControllerBase {
     }
 
     return $this->buildElementPeopleTeasers(
+      $this->getRandomTitle(),
+      $this->buildProcessedText('This is a directory list of awesome people'),
+      $items,
+    );
+  }
+
+  /**
+   * Get People teasers element.
+   *
+   * @return array
+   *   Render array.
+   */
+  protected function getPersonCards(): array {
+
+    // Sample data for people cards.
+    $items = [
+      ['name' => 'Jon Doe', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Developer', 'description' => 'Expert in backend development and database management.'],
+      ['name' => 'Smith Allen', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'General Director', 'description' => 'Oversees company operations and ensures strategic goals are met.'],
+      ['name' => 'David Bowie', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Creative Director', 'description' => 'Leads the creative team in developing innovative marketing campaigns.'],
+      ['name' => 'Rick Morty', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Intern', 'description' => 'Assists various departments while gaining hands-on experience in the industry.'],
+    ];
+
+    return $this->buildElementPersonCards(
       $this->getRandomTitle(),
       $this->buildProcessedText('This is a directory list of awesome people'),
       $items,

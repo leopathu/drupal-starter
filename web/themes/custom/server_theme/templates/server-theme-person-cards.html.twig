@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Person Cards Style Guide.
+ */
+#}
+  
+<div class="space-y-16">
+
+  {# Grid of Person Cards #}
+  <div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {% for card in cards %}
+        {% include '@server_theme/server-theme-person-card.html.twig' with {
+          image_url: card.image_url,
+          name: card.name,
+          role: card.role,
+          description: card.description
+        } %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
