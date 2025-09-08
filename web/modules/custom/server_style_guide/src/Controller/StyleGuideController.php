@@ -310,14 +310,14 @@ class StyleGuideController extends ControllerBase {
 
     // Sample data for people cards.
     $items = [
-      ['name' => 'Jon Doe', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Developer', 'description' => 'Expert in backend development and database management.'],
-      ['name' => 'Smith Allen', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'General Director', 'description' => 'Oversees company operations and ensures strategic goals are met.'],
-      ['name' => 'David Bowie', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Creative Director', 'description' => 'Leads the creative team in developing innovative marketing campaigns.'],
-      ['name' => 'Rick Morty', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Intern', 'description' => 'Assists various departments while gaining hands-on experience in the industry.'],
+      ['name' => 'Jon Doe', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Developer', 'description' => 'Expert in backend development', 'mail' => 'jon.doe@example.com', 'phone' => '+1 234 567 8901'],
+      ['name' => 'Smith Allen', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'General Director', 'description' => 'Oversees company operations', 'mail' => 'smith.allen@example.com', 'phone' => '+1 234 567 8902'],
+      ['name' => 'David Bowie', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Creative Director', 'description' => 'Leads the creative team in developing', 'mail' => 'david.bowie@example.com', 'phone' => '+1 234 567 8903'],
+      ['name' => 'Rick Morty', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Intern', 'description' => 'Assists various departments', 'mail' => 'rick.morty@example.com', 'phone' => '+1 234 567 8904'],
     ];
 
     return $this->buildElementPersonCards(
-      $this->getRandomTitle(),
+      'Person Cards',
       $this->buildProcessedText('This is a directory list of awesome people'),
       $items,
     );
