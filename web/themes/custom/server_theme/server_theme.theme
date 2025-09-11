@@ -14,6 +14,21 @@ use Drupal\lang_dropdown\LanguageDropdownConstants;
 function server_theme_theme() {
   $info = [];
 
+  $info['server_theme_person_card'] = [
+    'variables' => [
+      'image_url' => NULL,
+      'name' => NULL,
+      'role' => NULL,
+      'description' => NULL,
+    ],
+  ];
+
+  $info['server_theme_person_cards'] = [
+    'variables' => [
+      'cards' => [],
+    ],
+  ];
+
   $info['server_theme_container_wide'] = [
     'variables' => [
       'element' => [],
