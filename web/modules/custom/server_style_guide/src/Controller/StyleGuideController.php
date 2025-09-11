@@ -309,12 +309,47 @@ class StyleGuideController extends ControllerBase {
   protected function getPersonCards(): array {
 
     // Sample data for people cards.
-    $items = [
-      ['name' => 'Jon Doe', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Developer', 'description' => 'Expert in backend development', 'mail' => 'jon.doe@example.com', 'phone' => '+1 234 567 8901'],
-      ['name' => 'Smith Allen', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'General Director', 'description' => 'Oversees company operations', 'mail' => 'smith.allen@example.com', 'phone' => '+1 234 567 8902'],
-      ['name' => 'David Bowie', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Creative Director', 'description' => 'Leads the creative team in developing', 'mail' => 'david.bowie@example.com', 'phone' => '+1 234 567 8903'],
-      ['name' => 'Rick Morty', 'image_url' => $this->getPlaceholderPersonImage(100), 'role' => 'Intern', 'description' => 'Assists various departments', 'mail' => 'rick.morty@example.com', 'phone' => '+1 234 567 8904'],
+    $datas = [
+      [
+        'name' => 'Jon Doe',
+        'image_url' => $this->getPlaceholderPersonImage(100),
+        'role' => 'Developer',
+        'description' => 'Expert in backend development',
+        'mail' => $this->buildLink(
+          'Email',
+          Url::fromUri('mailto:jon.doe@example.com')
+        ),
+        'phone' => $this->buildLink('Call', Url::fromUri('tel:+1 234 567 8901'))
+      ],
+      [
+        'name' => 'Smith Allen',
+        'image_url' => $this->getPlaceholderPersonImage(100),
+        'role' => 'General Director',
+        'description' => 'Oversees company operations',
+        'mail' => $this->buildLink('smith.allen@example.com', Url::fromUri('mailto:smith.allen@example.com')),
+        'phone' => $this->buildLink('+1 234 567 8902', Url::fromUri('tel:+1 234 567 8902'))
+      ],
+      [
+        'name' => 'David Bowie',
+        'image_url' => $this->getPlaceholderPersonImage(100),
+        'role' => 'Creative Director',
+        'description' => 'Leads the creative team in developing',
+        'mail' => $this->buildLink('david.bowie@example.com', Url::fromUri('mailto:david.bowie@example.com')),
+        'phone' => $this->buildLink('+1 234 567 8903', Url::fromUri('tel:+1 234 567 8903'))
+      ],
+      [
+        'name' => 'Rick Morty',
+        'image_url' => $this->getPlaceholderPersonImage(100),
+        'role' => 'Intern',
+        'description' => 'Assists various departments',
+        'mail' => $this->buildLink('rick.morty@example.com', Url::fromUri('mailto:rick.morty@example.com')),
+        'phone' => $this->buildLink('+1 234 567 8904', Url::fromUri('tel:+1 234 567 8904'))
+      ],
     ];
+    $items = [];
+    foreach ($datas as &$item) {
+      $items[] = $this->buildElementPersonCard($item);
+    }
 
     return $this->buildElementPersonCards(
       'Person Cards',
